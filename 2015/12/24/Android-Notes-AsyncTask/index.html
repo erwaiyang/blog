@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <meta charset="utf-8">
+    
+    <title>Android Notes: AsyncTask | Erwai the Programmer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="AsyncTask is a very quick method to do works in a new thread.  It is especially useful for accessing network resources.
+You can not connect to network if you’re in main thread, which is also called UI">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android Notes: AsyncTask">
+<meta property="og:url" content="http://erwaiyang.github.io/blog/2015/12/24/Android-Notes-AsyncTask/index.html">
+<meta property="og:site_name" content="Erwai the Programmer">
+<meta property="og:description" content="AsyncTask is a very quick method to do works in a new thread.  It is especially useful for accessing network resources.
+You can not connect to network if you’re in main thread, which is also called UI">
+<meta property="og:updated_time" content="2016-04-04T12:01:47.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android Notes: AsyncTask">
+<meta name="twitter:description" content="AsyncTask is a very quick method to do works in a new thread.  It is especially useful for accessing network resources.
+You can not connect to network if you’re in main thread, which is also called UI">
+<meta name="twitter:creator" content="@erwaiyang">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/blog/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/blog/vendor/open-sans/styles.css">
+    <link rel="stylesheet" href="/blog/vendor/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/blog/css/style.css">
+
+    <script src="/blog/vendor/jquery/2.1.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/blog/vendor/fancybox/jquery.fancybox.css">
+    
+    
+    
+    
+
+</head>
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/blog/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">Erwai the Programmer</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/blog/archives">Archives</a>
+                
+                    <a class="main-nav-link" href="/blog/categories">Categories</a>
+                
+                    <a class="main-nav-link" href="/blog/tags">Tags</a>
+                
+                    <a class="main-nav-link" href="/blog/about">About</a>
+                
+            </nav>
+            
+                
+                <nav id="sub-nav">
+                    <div class="profile" id="profile-nav">
+                        <a id="profile-anchor" href="javascript:;">
+                            <img class="avatar" src="/blog/css/images/avatar.jpeg" />
+                            <i class="fa fa-caret-down"></i>
+                        </a>
+                    </div>
+                </nav>
+            
+            <div id="search-form-wrap">
+
+    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"> </button><input type="hidden" name="sitesearch" value="http://erwaiyang.github.io/blog"></form>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/blog/archives">Archives</a></td>
+                
+                    <td><a class="main-nav-link" href="/blog/categories">Categories</a></td>
+                
+                    <td><a class="main-nav-link" href="/blog/tags">Tags</a></td>
+                
+                    <td><a class="main-nav-link" href="/blog/about">About</a></td>
+                
+                <td>
+                    
+    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><input type="hidden" name="sitesearch" value="http://erwaiyang.github.io/blog"></form>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+                
+
+<aside id="profile">
+    <div class="inner profile-inner">
+        <div class="base-info profile-block">
+            <img id="avatar" src="/blog/css/images/avatar.jpeg" />
+            <h2 id="name">Er-Wai</h2>
+            <h3 id="title">Full Stack Web Developer</h3>
+            <span id="location"><i class="fa fa-map-marker"></i>Taipei, Taiwan</span>
+            <a id="follow" target="_blank" href="https://github.com/erwaiyang/">FOLLOW</a>
+        </div>
+        <div class="article-info profile-block">
+            <div class="article-info-block">
+                3
+                <span>posts</span>
+            </div>
+            <div class="article-info-block">
+                15
+                <span>tags</span>
+            </div>
+        </div>
+        
+        <div class="profile-block social-links">
+            <table>
+                <tr>
+                    
+                    <td><a href="https://github.com/erwaiyang" target="_blank" title="github"><i class="fa fa-github"></i></a></td>
+                    
+                    <td><a href="https://twitter.com/erwaiyang" target="_blank" title="twitter"><i class="fa fa-twitter"></i></a></td>
+                    
+                    <td><a href="http://stackoverflow.com/users/1951139/erwai" target="_blank" title="stack-overflow"><i class="fa fa-stack-overflow"></i></a></td>
+                    
+                    <td><a href="https://www.linkedin.com/in/jeanycyang" target="_blank" title="linkedin"><i class="fa fa-linkedin"></i></a></td>
+                    
+                    <td><a href="/blog/atom.xml" target="_blank" title="rss"><i class="fa fa-rss"></i></a></td>
+                    
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+</aside>
+
+            
+            <section id="main"><article id="post-Android-Notes-AsyncTask" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+            Android Notes: AsyncTask
+        </h1>
+    
+
+                <div class="article-meta">
+                    
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/blog/2015/12/24/Android-Notes-AsyncTask/">
+            <time datetime="2015-12-24T07:16:52.000Z" itemprop="datePublished">2015-12-24</time>
+        </a>
+    </div>
+
+
+                    
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/blog/categories/Android/">Android</a>
+    </div>
+
+                    
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/blog/tags/AsyncTask/">AsyncTask</a>, <a class="tag-link" href="/blog/tags/android/">android</a>, <a class="tag-link" href="/blog/tags/java/">java</a>, <a class="tag-link" href="/blog/tags/notes/">notes</a>
+    </div>
+
+                </div>
+            </header>
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <p><code>AsyncTask</code> is a very quick method to do works in a new thread.  It is especially useful for accessing network resources.</p>
+<p>You can not connect to network if you’re in main thread, which is also called UI thread.</p>
+<p>It is “unsafe”.</p>
+<p><code>AsyncTask</code> automatically creates a new thread for you; when your task is done, the thread will be terminated.</p>
+<a id="more"></a>
+<h1 id="Some-Part-of-its-Source-Code"><a href="#Some-Part-of-its-Source-Code" class="headerlink" title="Some Part of its Source Code"></a>Some Part of its Source Code</h1><!--__If you only want to know 'how to use it', please skip this section and jump to the next section 'Basic Usage'.__-->
+<p>You can browser Android source code on <a href="https://github.com/android/platform_frameworks_base/blob/master/core/java/android/os/AsyncTask.java" target="_blank" rel="external">GitHub</a>.</p>
+<p>And <a href="http://developer.android.com/reference/android/os/AsyncTask.html" target="_blank" rel="external">here is its Javadoc</a>.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">AsyncTask</span>&lt;<span class="title">Params</span>, <span class="title">Progress</span>, <span class="title">Result</span>&gt; </span>&#123;</span><br><span class="line">	<span class="comment">//...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>First of all, the <code>AsyncTask</code> class is abstract.  So, you cannot create an instance of it and thus you must extend it.</p>
+<p>The only method you have to override is <code>doInBackground</code>.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@WorkerThread</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">abstract</span> Result <span class="title">doInBackground</span><span class="params">(Params... params)</span></span>;</span><br></pre></td></tr></table></figure></p>
+<h1 id="Basic-Usage"><a href="#Basic-Usage" class="headerlink" title="Basic Usage"></a>Basic Usage</h1><p>If you’ve read the source code throughoutly and carefully, you might be as touched as me since Google developers devoted themselves to developing such a great and easy-to-use class.(laugh)</p>
+<p>Its basic usage is do whatever you want in the override method <code>doInBackground</code>.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyAwesomeTask</span> <span class="keyword">extends</span> <span class="title">AsyncTask</span>&lt;<span class="title">String</span>, <span class="title">Integer</span>, <span class="title">Integer</span>&gt;</span>&#123;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">protected</span> Integer <span class="title">doInBackground</span><span class="params">(String... params)</span></span>&#123;</span><br><span class="line">		<span class="comment">//Whatever you want to do in a new thread</span></span><br><span class="line">		<span class="comment">//The most common usage is fetching network resources</span></span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>First, when your class extend <code>AsyncTask</code>, you have to decide three data types.</p>
+<ol>
+<li>params - the param array when you execute the task.</li>
+<li>progress - if you override <code>onProgressUpdate</code>, you will find it really useful.</li>
+<li>Result - the <code>doInBackground</code> should return the result when the task is done.</li>
+</ol>
+<h2 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> my.awesome.app;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> android.content.Context;</span><br><span class="line"><span class="keyword">import</span> android.os.AsyncTask;</span><br><span class="line"><span class="keyword">import</span> android.widget.ProgressBar;</span><br><span class="line"><span class="keyword">import</span> android.widget.Toast;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GetImageTask</span> <span class="keyword">extends</span> <span class="title">AsyncTask</span>&lt;<span class="title">String</span>, <span class="title">Integer</span>, <span class="title">Integer</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Context context;</span><br><span class="line">    <span class="keyword">private</span> ProgressBar progressBar;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// Constructor.</span></span><br><span class="line">	<span class="comment">// Get some needed instances from the class which executes AsyncTask</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">GetImageTask</span><span class="params">(Context context, ProgressBar progressBar)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.context = context;</span><br><span class="line">        <span class="keyword">this</span>.progressBar = progressBar;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onPreExecute</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// onPreExecute runs on the UI thread</span></span><br><span class="line">        <span class="comment">// In fact, only doInBackground runs on new thread.</span></span><br><span class="line">        <span class="comment">// Before the task starts doInBackground method, onPreExecute is called first.</span></span><br><span class="line">        <span class="keyword">this</span>.progressBar.setIndeterminate(<span class="keyword">false</span>);</span><br><span class="line">        <span class="keyword">this</span>.progressBar.setMax(<span class="number">100</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> Integer <span class="title">doInBackground</span><span class="params">(String... urls)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> length = urls.length;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;length; i++)&#123;</span><br><span class="line">            <span class="comment">// ~~~WORKING~~~</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">// Simulating working progress</span></span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">			</span><br><span class="line">			<span class="comment">// when you call publishProgress(progress), </span></span><br><span class="line">			<span class="comment">// the program calls onProgressUpdate.</span></span><br><span class="line">			<span class="comment">// but they still work parallely</span></span><br><span class="line">            publishProgress( i * (<span class="number">100</span>/length) );</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onProgressUpdate</span><span class="params">(Integer... progress)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// onProgressUpdate runs on the UI thread</span></span><br><span class="line">        progressBar.setProgress(progress[<span class="number">0</span>]);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onPostExecute</span><span class="params">(Integer result)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// onPostExecute runs on the UI thread</span></span><br><span class="line">        <span class="comment">// When doInBackground returns the final result,</span></span><br><span class="line">        <span class="comment">// this method will be called.</span></span><br><span class="line">        progressBar.setProgress(<span class="number">100</span>);</span><br><span class="line">        <span class="comment">//show a dialog which tells the user the work is done.</span></span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Meaningful-Progress"><a href="#Meaningful-Progress" class="headerlink" title="Meaningful Progress"></a>Meaningful <code>Progress</code></h2><p>Declare some <a href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes" target="_blank" rel="external">http status code</a> constants.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> HTTP_CODE_OK = <span class="number">200</span>;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> HTTP_CODE_BAD_REQUEST = <span class="number">400</span>;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> HTTP_CODE_FORBIDDEN = <span class="number">403</span>;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> HTTP_CODE_NOT_FOUND = <span class="number">404</span>;</span><br></pre></td></tr></table></figure>
+<p>and publish progress:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;length; i++)&#123;</span><br><span class="line">	<span class="comment">//..........</span></span><br><span class="line">	<span class="comment">// if else / switch case</span></span><br><span class="line">	<span class="keyword">int</span> the_result_of_this_image = HTTP_CODE_OK;</span><br><span class="line"></span><br><span class="line">	publishProgress( i * (<span class="number">100</span>/length) , the_result_of_this_image );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onProgressUpdate</span><span class="params">(Integer... progress)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// onProgressUpdate runs on the UI thread</span></span><br><span class="line">    progressBar.setProgress(progress[<span class="number">0</span>]);</span><br><span class="line">    Toast.makeText(context, <span class="string">"Result:"</span>+progress[<span class="number">1</span>], Toast.LENGTH_LONG).show();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Meaningful-Result"><a href="#Meaningful-Result" class="headerlink" title="Meaningful Result"></a>Meaningful <code>Result</code></h2><p>Now we want to pass the result (Integer) to <code>onPostExecute</code>.</p>
+<p>Declare the variable <code>length</code> globally:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> length;</span><br></pre></td></tr></table></figure>
+<p>Assign urls.length to it.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> Integer <span class="title">doInBackground</span><span class="params">(String... urls)</span></span>&#123;</span><br><span class="line">    length = urls.length;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Counts only when we get that image successfully.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;length; i++)&#123;</span><br><span class="line">	<span class="comment">//..........</span></span><br><span class="line">	<span class="comment">// only when we get that image successfully</span></span><br><span class="line">	<span class="keyword">if</span>(statusCode == HTTP_CODE_OK)</span><br><span class="line">		count++;</span><br><span class="line"></span><br><span class="line">	publishProgress( i * (<span class="number">100</span>/length) , the_result_of_this_image );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> count;</span><br></pre></td></tr></table></figure>
+<p>When the task is done, we know how many images did we get successfully.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onPostExecute</span><span class="params">(Integer result)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// onPostExecute runs on the UI thread</span></span><br><span class="line">    progressBar.setProgress(<span class="number">100</span>);</span><br><span class="line">    <span class="comment">//show a dialog which tells the user the work is done.</span></span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    Toast.makeText(context, <span class="string">"OK:"</span>+result+<span class="string">" failed:"</span>+(length - result), Toast.LENGTH_LONG).show();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="Call-Our-Awesome-Task"><a href="#Call-Our-Awesome-Task" class="headerlink" title="Call Our Awesome Task!"></a>Call Our Awesome Task!</h1><p>We just finished our <code>GetImageTask</code>.</p>
+<p>In our <code>Activity</code>, <code>Fragment</code> or whatever, we execute it:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> GetImageTask(mContext, progressBar).execute(urlsArray);</span><br></pre></td></tr></table></figure>
+<h1 id="The-Killer-Feature"><a href="#The-Killer-Feature" class="headerlink" title="The Killer Feature!"></a>The Killer Feature!</h1><p>You might think it is good enough and be very happy with <code>AsyncTask</code>.</p>
+<p>However, the best is yet to be.</p>
+<p>The Killer Feature of <code>AsyncTask</code> - Let the Task communicates with the main thread by using “<strong>the delegate</strong>”.</p>
+<p>(It will be a new article. To Be Continued.)</p>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://erwaiyang.github.io/blog/blog/2015/12/24/Android-Notes-AsyncTask/" data-id="cimq4mevh000rbqs4de1a72ot" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="http://erwaiyang.github.io/blog/blog/2015/12/24/Android-Notes-AsyncTask/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://erwaiyang.github.io/blog/blog/2015/12/24/Android-Notes-AsyncTask/">Comments</a>
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/blog/2016/01/26/Mac-OSX-DIY-and-Say-Goodbye-to-XAMPP/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">Newer</strong>
+            <div class="article-nav-title">
+                
+                    Mac OSX: DIY and Say Goodbye to XAMPP!
+                
+            </div>
+        </a>
+    
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+</section>
+            
+                <aside id="sidebar">
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">recent</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/blog/2016/04/07/A-Step-by-Step-Introduction-to-React-Motion-Part-I/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/blog/2016/04/07/A-Step-by-Step-Introduction-to-React-Motion-Part-I/initial_button.png)" alt="A Step-by-Step Introduction to React Motion (Part I)" class="thumbnail-image"></span>
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/blog/categories/react-js/">react.js</a></p>
+                            <p class="item-title"><a href="/blog/2016/04/07/A-Step-by-Step-Introduction-to-React-Motion-Part-I/" class="title">A Step-by-Step Introduction to React Motion (Part I)</a></p>
+                            <p class="item-date"><time datetime="2016-04-07T09:49:20.000Z" itemprop="datePublished">2016-04-07</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/blog/2016/01/26/Mac-OSX-DIY-and-Say-Goodbye-to-XAMPP/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/blog/2016/01/26/Mac-OSX-DIY-and-Say-Goodbye-to-XAMPP/xampp-installation.png)" alt="Mac OSX: DIY and Say Goodbye to XAMPP!" class="thumbnail-image"></span>
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/blog/2016/01/26/Mac-OSX-DIY-and-Say-Goodbye-to-XAMPP/" class="title">Mac OSX: DIY and Say Goodbye to XAMPP!</a></p>
+                            <p class="item-date"><time datetime="2016-01-25T18:09:30.000Z" itemprop="datePublished">2016-01-26</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/blog/2015/12/24/Android-Notes-AsyncTask/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/blog/categories/Android/">Android</a></p>
+                            <p class="item-title"><a href="/blog/2015/12/24/Android-Notes-AsyncTask/" class="title">Android Notes: AsyncTask</a></p>
+                            <p class="item-date"><time datetime="2015-12-24T07:16:52.000Z" itemprop="datePublished">2015-12-24</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/Android/">Android</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/react-js/">react.js</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/04/">April 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/01/">January 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/12/">December 2015</a><span class="archive-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">tags</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Apache/">Apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/AsyncTask/">AsyncTask</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/MAMP/">MAMP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Mac/">Mac</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Mac-OSX/">Mac OSX</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/MySQL/">MySQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/PHP/">PHP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/WordPress/">WordPress</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/XAMPP/">XAMPP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/android/">android</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/java/">java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/javascript/">javascript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/notes/">notes</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/react-motion/">react-motion</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/react-js/">react.js</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/blog/tags/Apache/" style="font-size: 10px;">Apache</a> <a href="/blog/tags/AsyncTask/" style="font-size: 10px;">AsyncTask</a> <a href="/blog/tags/MAMP/" style="font-size: 10px;">MAMP</a> <a href="/blog/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/blog/tags/Mac-OSX/" style="font-size: 10px;">Mac OSX</a> <a href="/blog/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/blog/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/blog/tags/WordPress/" style="font-size: 10px;">WordPress</a> <a href="/blog/tags/XAMPP/" style="font-size: 10px;">XAMPP</a> <a href="/blog/tags/android/" style="font-size: 10px;">android</a> <a href="/blog/tags/java/" style="font-size: 10px;">java</a> <a href="/blog/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/blog/tags/notes/" style="font-size: 10px;">notes</a> <a href="/blog/tags/react-motion/" style="font-size: 10px;">react-motion</a> <a href="/blog/tags/react-js/" style="font-size: 10px;">react.js</a>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://erwaiyang.github.io">Website</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+    
+    <div id="toTop" class="fa fa-chevron-up"></div>
+</aside>
+            
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            &copy; 2016 erwaiyang<br>
+            Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'erwaisblog';
+    
+    
+    var disqus_url = 'http://erwaiyang.github.io/blog/blog/2015/12/24/Android-Notes-AsyncTask/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+    
+        <script src="/blog/vendor/fancybox/jquery.fancybox.pack.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/blog/js/main.js"></script>
+
+    </div>
+</body>
+</html>

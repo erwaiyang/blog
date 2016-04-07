@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <meta charset="utf-8">
+    
+    <title>Mac OSX: DIY and Say Goodbye to XAMPP! | Erwai the Programmer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Apache, MySQL, and PHP are a very popular stack.
+Wordpress, based on PHP and MySQL, for example, is the most popular CMS in the world.  “WordPress was used by more than 23.3% of the top 10 million web">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mac OSX: DIY and Say Goodbye to XAMPP!">
+<meta property="og:url" content="http://erwaiyang.github.io/blog/2016/01/26/Mac-OSX-DIY-and-Say-Goodbye-to-XAMPP/index.html">
+<meta property="og:site_name" content="Erwai the Programmer">
+<meta property="og:description" content="Apache, MySQL, and PHP are a very popular stack.
+Wordpress, based on PHP and MySQL, for example, is the most popular CMS in the world.  “WordPress was used by more than 23.3% of the top 10 million web">
+<meta property="og:image" content="http://erwaiyang.github.io/blog/2016/01/26/Mac-OSX-DIY-and-Say-Goodbye-to-XAMPP/xampp-installation.png">
+<meta property="og:updated_time" content="2016-04-04T12:01:47.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Mac OSX: DIY and Say Goodbye to XAMPP!">
+<meta name="twitter:description" content="Apache, MySQL, and PHP are a very popular stack.
+Wordpress, based on PHP and MySQL, for example, is the most popular CMS in the world.  “WordPress was used by more than 23.3% of the top 10 million web">
+<meta name="twitter:image" content="http://erwaiyang.github.io/blog/2016/01/26/Mac-OSX-DIY-and-Say-Goodbye-to-XAMPP/xampp-installation.png">
+<meta name="twitter:creator" content="@erwaiyang">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/blog/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/blog/vendor/open-sans/styles.css">
+    <link rel="stylesheet" href="/blog/vendor/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/blog/css/style.css">
+
+    <script src="/blog/vendor/jquery/2.1.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/blog/vendor/fancybox/jquery.fancybox.css">
+    
+    
+    
+    
+
+</head>
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/blog/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">Erwai the Programmer</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/blog/archives">Archives</a>
+                
+                    <a class="main-nav-link" href="/blog/categories">Categories</a>
+                
+                    <a class="main-nav-link" href="/blog/tags">Tags</a>
+                
+                    <a class="main-nav-link" href="/blog/about">About</a>
+                
+            </nav>
+            
+                
+                <nav id="sub-nav">
+                    <div class="profile" id="profile-nav">
+                        <a id="profile-anchor" href="javascript:;">
+                            <img class="avatar" src="/blog/css/images/avatar.jpeg" />
+                            <i class="fa fa-caret-down"></i>
+                        </a>
+                    </div>
+                </nav>
+            
+            <div id="search-form-wrap">
+
+    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"> </button><input type="hidden" name="sitesearch" value="http://erwaiyang.github.io/blog"></form>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/blog/archives">Archives</a></td>
+                
+                    <td><a class="main-nav-link" href="/blog/categories">Categories</a></td>
+                
+                    <td><a class="main-nav-link" href="/blog/tags">Tags</a></td>
+                
+                    <td><a class="main-nav-link" href="/blog/about">About</a></td>
+                
+                <td>
+                    
+    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><input type="hidden" name="sitesearch" value="http://erwaiyang.github.io/blog"></form>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+                
+
+<aside id="profile">
+    <div class="inner profile-inner">
+        <div class="base-info profile-block">
+            <img id="avatar" src="/blog/css/images/avatar.jpeg" />
+            <h2 id="name">Er-Wai</h2>
+            <h3 id="title">Full Stack Web Developer</h3>
+            <span id="location"><i class="fa fa-map-marker"></i>Taipei, Taiwan</span>
+            <a id="follow" target="_blank" href="https://github.com/erwaiyang/">FOLLOW</a>
+        </div>
+        <div class="article-info profile-block">
+            <div class="article-info-block">
+                3
+                <span>posts</span>
+            </div>
+            <div class="article-info-block">
+                15
+                <span>tags</span>
+            </div>
+        </div>
+        
+        <div class="profile-block social-links">
+            <table>
+                <tr>
+                    
+                    <td><a href="https://github.com/erwaiyang" target="_blank" title="github"><i class="fa fa-github"></i></a></td>
+                    
+                    <td><a href="https://twitter.com/erwaiyang" target="_blank" title="twitter"><i class="fa fa-twitter"></i></a></td>
+                    
+                    <td><a href="http://stackoverflow.com/users/1951139/erwai" target="_blank" title="stack-overflow"><i class="fa fa-stack-overflow"></i></a></td>
+                    
+                    <td><a href="https://www.linkedin.com/in/jeanycyang" target="_blank" title="linkedin"><i class="fa fa-linkedin"></i></a></td>
+                    
+                    <td><a href="/blog/atom.xml" target="_blank" title="rss"><i class="fa fa-rss"></i></a></td>
+                    
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+</aside>
+
+            
+            <section id="main"><article id="post-Mac-OSX-DIY-and-Say-Goodbye-to-XAMPP" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+            Mac OSX: DIY and Say Goodbye to XAMPP!
+        </h1>
+    
+
+                <div class="article-meta">
+                    
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/blog/2016/01/26/Mac-OSX-DIY-and-Say-Goodbye-to-XAMPP/">
+            <time datetime="2016-01-25T18:09:30.000Z" itemprop="datePublished">2016-01-26</time>
+        </a>
+    </div>
+
+
+                    
+                    
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/blog/tags/Apache/">Apache</a>, <a class="tag-link" href="/blog/tags/MAMP/">MAMP</a>, <a class="tag-link" href="/blog/tags/Mac/">Mac</a>, <a class="tag-link" href="/blog/tags/Mac-OSX/">Mac OSX</a>, <a class="tag-link" href="/blog/tags/MySQL/">MySQL</a>, <a class="tag-link" href="/blog/tags/PHP/">PHP</a>, <a class="tag-link" href="/blog/tags/WordPress/">WordPress</a>, <a class="tag-link" href="/blog/tags/XAMPP/">XAMPP</a>
+    </div>
+
+                </div>
+            </header>
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <p>Apache, MySQL, and PHP are a very popular stack.</p>
+<p>Wordpress, based on PHP and MySQL, for example, is the most popular CMS in the world.  “WordPress was used by more than 23.3% of the top 10 million websites as of January 2015.” – Wikipedia</p>
+<p><a href="https://www.appservnetwork.com/en/" target="_blank" rel="external">AppServ</a> is a simple PHP, MySQL, and Apache package for Windows OS; <a href="https://www.apachefriends.org/index.html" target="_blank" rel="external">XAMPP</a> can be installed on Linux, Mac OSX and Windows.  “X” stands for cross-platform.</p>
+<p>However, XAMPP has replaced MySQL with MariaDB <a href="https://en.wikipedia.org/wiki/XAMPP#Features" target="_blank" rel="external">after version 5.6.14</a>.</p>
+<p>If you are about to install Wordpress, it is troublesome.</p>
+<a id="more"></a>
+<h1 id="Pros"><a href="#Pros" class="headerlink" title="Pros"></a>Pros</h1><h2 id="1-Good-for-the-Lazy"><a href="#1-Good-for-the-Lazy" class="headerlink" title="1. Good for the Lazy"></a>1. Good for the Lazy</h2><p>Simple and fast: with several clicks, all you need is completely installed.</p>
+<p><img src="xampp-installation.png" alt="XAMPP installation"></p>
+<h2 id="2-GUI"><a href="#2-GUI" class="headerlink" title="2. GUI"></a>2. GUI</h2><p>Simple start, stop and restart buttons.</p>
+<p><img src="xampp-GUI.png" alt="XAMPP GUI"></p>
+<h1 id="Cons"><a href="#Cons" class="headerlink" title="Cons"></a>Cons</h1><h2 id="1-All-Files-are-under-the-XAMPP-directory"><a href="#1-All-Files-are-under-the-XAMPP-directory" class="headerlink" title="1. All Files are under the XAMPP directory"></a>1. All Files are under the <code>XAMPP</code> directory</h2><p>Why it is not good?</p>
+<p>If you are familiar with Unix-like systems, you may want your files well-organized and store them in the correct directories.</p>
+<p>For example, instead of being put in <code>/Applications/XAMPP/bin/</code>, <code>mysql</code>, as a installed program, should be in <code>/usr/local/mysql</code> and you can add it to your <code>PATH</code> variable.</p>
+<p><img src="under-directory.png" alt="the XAMPP directory"></p>
+<h2 id="2-Version-issue"><a href="#2-Version-issue" class="headerlink" title="2. Version issue"></a>2. Version issue</h2><p>PHP, MySQL or Apache version is decided by XAMPP, not by you; there may be a reason like compatibility that you have to use specific PHP, MySQL or Apache version.</p>
+<p>It is not so easy to upgrade or downgrade.</p>
+<p><img src="xampp-versions.png" alt="XAMPP versions and its component Versions (Wikipedia)"></p>
+<h2 id="3-Your-Lovely-Component-was-even-replaced"><a href="#3-Your-Lovely-Component-was-even-replaced" class="headerlink" title="3. Your Lovely Component was even replaced!"></a>3. Your Lovely Component was even replaced!</h2><p>As I said before, XAMPP replaced MySQL with MariaDB.</p>
+<p>If you have used XAMPP for a long time and really need MySQL, ooops!</p>
+<h1 id="Say-Goodbye-to-Package"><a href="#Say-Goodbye-to-Package" class="headerlink" title="Say Goodbye to Package"></a>Say Goodbye to Package</h1><p>In short, a package can never cater to everyone in the world.</p>
+<p>Therefore, let’s setup the environment by ourselves now!</p>
+<h1 id="Apache"><a href="#Apache" class="headerlink" title="Apache"></a>Apache</h1><p>You need not download any binary or installation package.</p>
+<p>Mac have already installed Apache for you.</p>
+<p>Your web root directory is at <code>/Library/WebServer/Documents</code>.</p>
+<pre>
+$ cd /Library/WebServer/Documents
+</pre>
+
+<p>If there is no <code>index.html</code>, let’s create one.</p>
+<pre>
+$ echo 'Hello World!' > index.html
+</pre>
+
+<p>You need root permission to start apache.</p>
+<pre>
+$ sudo apachectl start
+</pre>
+
+<p>or login as root.</p>
+<pre>
+# apachectl start
+</pre>
+
+<p>Open your browser and go to localhost.</p>
+<p><img src="localhost.png" alt="Hello World Message!"></p>
+<h1 id="PHP"><a href="#PHP" class="headerlink" title="PHP"></a>PHP</h1><p>Like Apache, php is already ready and all we need to do is enable it.</p>
+<h2 id="Enable-PHP-module"><a href="#Enable-PHP-module" class="headerlink" title="Enable PHP module"></a>Enable PHP module</h2><p>The config file <code>httpd.conf</code> of Apache is in <code>/etc/apache2</code>.</p>
+<pre>
+$ cd /etc/apache2
+</pre>
+
+<p>Open <code>httpd.conf</code> and find this line:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#LoadModule php5_module libexec/apache2/libphp5.so</span><br></pre></td></tr></table></figure>
+<p><img src="httpd-conf.png" alt="Apache config"></p>
+<p>Delete the <code>#</code>, save the file and PHP module will be loaded when Apache server restarts.</p>
+<pre>
+$ sudo apachectl restart
+</pre>
+
+<p>To see whether PHP module is loaded, you can create a <code>phpinfo.php</code> file at the root directory of server.</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">phpinfo();</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="phpinfo.png" alt="phpinfo"></p>
+<h2 id="Where’s-my-php-ini"><a href="#Where’s-my-php-ini" class="headerlink" title="Where’s my php.ini?"></a>Where’s my <code>php.ini</code>?</h2><p>Your default <code>php.ini</code> is in <code>/etc</code>, which is a symlink of <code>/private/etc</code>.</p>
+<p><img src="php.ini.png" alt="location of php.ini"></p>
+<h1 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h1><h2 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h2><p><a href="http://dev.mysql.com/downloads/mysql/" target="_blank" rel="external">Download MySQL</a></p>
+<p>Please follow the instruction.</p>
+<h2 id="Start-MySQL"><a href="#Start-MySQL" class="headerlink" title="Start MySQL"></a>Start MySQL</h2><p>MySQL is usually installed in <code>/usr/local/mysql</code>.</p>
+<pre>
+    $ cd /usr/local/mysql
+    $ ls
+</pre>
+
+<p>There are lots of executables in <code>bin</code>; and some are in <code>support-files</code>.</p>
+<pre>
+    $ cd support-files
+</pre>
+
+<p>And start MySQL.</p>
+<pre>
+    $ ./mysql.server start
+</pre>
+
+<h2 id="Socket"><a href="#Socket" class="headerlink" title="Socket"></a>Socket</h2><blockquote>
+<p>For connections to localhost, MySQL programs attempt to connect to the local server by using a Unix socket file.<br>–<a href="https://dev.mysql.com/doc/refman/5.5/en/connecting.html" target="_blank" rel="external">mysql.com</a></p>
+</blockquote>
+<p>So, the last step is making our Apache “know” where our mysql is.</p>
+<pre>
+    cd /var
+    mkdir mysql
+    cd mysql
+    ln -s /tmp/mysql.sock mysql.sock
+</pre>
+
+<p>PS. <code>/tmp/mysql.sock</code>: the default config stores socket file in <code>/tmp</code>; if you have your own config, replace <code>/tmp/mysql.sock</code> with where your socket really is.</p>
+<h2 id="Optional-PHP-My-Admin"><a href="#Optional-PHP-My-Admin" class="headerlink" title="Optional: PHP My Admin"></a>Optional: PHP My Admin</h2><p>It is common to install <a href="https://www.phpmyadmin.net/" target="_blank" rel="external">PHP My Admin</a> to manage MySQL.</p>
+<p>Download it, uncompress the zip, make a dir named <code>phpmyadmin</code> in <code>/Library/WebServer/Documents</code>, and paste all files in it.</p>
+<p>Open <a href="http://localhost/phpmyadmin" target="_blank" rel="external">http://localhost/phpmyadmin</a>.</p>
+<p>Bravo! That’s all!</p>
+<h1 id="Done"><a href="#Done" class="headerlink" title="Done!"></a>Done!</h1><p>Congratulations!</p>
+<p>Now you have your PHP-and-MYSQL Apache server on your mac!</p>
+<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ol>
+<li><a href="https://blog.allenchou.cc/mac-apache-php-mysql-setup/" target="_blank" rel="external">[Mac]不用懶人包，在 OS X 上安裝 Apache, PHP, MySQL</a></li>
+<li><a href="http://stackoverflow.com/questions/1951742/how-to-symlink-a-file-in-linux" target="_blank" rel="external">How to symlink a file in Linux?</a></li>
+</ol>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://erwaiyang.github.io/blog/blog/2016/01/26/Mac-OSX-DIY-and-Say-Goodbye-to-XAMPP/" data-id="cimq4mevf000qbqs47nppw1c9" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="http://erwaiyang.github.io/blog/blog/2016/01/26/Mac-OSX-DIY-and-Say-Goodbye-to-XAMPP/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://erwaiyang.github.io/blog/blog/2016/01/26/Mac-OSX-DIY-and-Say-Goodbye-to-XAMPP/">Comments</a>
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/blog/2016/04/07/A-Step-by-Step-Introduction-to-React-Motion-Part-I/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">Newer</strong>
+            <div class="article-nav-title">
+                
+                    A Step-by-Step Introduction to React Motion (Part I)
+                
+            </div>
+        </a>
+    
+    
+        <a href="/blog/2015/12/24/Android-Notes-AsyncTask/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">Android Notes: AsyncTask</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+</section>
+            
+                <aside id="sidebar">
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">recent</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/blog/2016/04/07/A-Step-by-Step-Introduction-to-React-Motion-Part-I/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/blog/2016/04/07/A-Step-by-Step-Introduction-to-React-Motion-Part-I/initial_button.png)" alt="A Step-by-Step Introduction to React Motion (Part I)" class="thumbnail-image"></span>
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/blog/categories/react-js/">react.js</a></p>
+                            <p class="item-title"><a href="/blog/2016/04/07/A-Step-by-Step-Introduction-to-React-Motion-Part-I/" class="title">A Step-by-Step Introduction to React Motion (Part I)</a></p>
+                            <p class="item-date"><time datetime="2016-04-07T09:49:20.000Z" itemprop="datePublished">2016-04-07</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/blog/2016/01/26/Mac-OSX-DIY-and-Say-Goodbye-to-XAMPP/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/blog/2016/01/26/Mac-OSX-DIY-and-Say-Goodbye-to-XAMPP/xampp-installation.png)" alt="Mac OSX: DIY and Say Goodbye to XAMPP!" class="thumbnail-image"></span>
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/blog/2016/01/26/Mac-OSX-DIY-and-Say-Goodbye-to-XAMPP/" class="title">Mac OSX: DIY and Say Goodbye to XAMPP!</a></p>
+                            <p class="item-date"><time datetime="2016-01-25T18:09:30.000Z" itemprop="datePublished">2016-01-26</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/blog/2015/12/24/Android-Notes-AsyncTask/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/blog/categories/Android/">Android</a></p>
+                            <p class="item-title"><a href="/blog/2015/12/24/Android-Notes-AsyncTask/" class="title">Android Notes: AsyncTask</a></p>
+                            <p class="item-date"><time datetime="2015-12-24T07:16:52.000Z" itemprop="datePublished">2015-12-24</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/Android/">Android</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/react-js/">react.js</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/04/">April 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/01/">January 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/12/">December 2015</a><span class="archive-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">tags</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Apache/">Apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/AsyncTask/">AsyncTask</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/MAMP/">MAMP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Mac/">Mac</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Mac-OSX/">Mac OSX</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/MySQL/">MySQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/PHP/">PHP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/WordPress/">WordPress</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/XAMPP/">XAMPP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/android/">android</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/java/">java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/javascript/">javascript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/notes/">notes</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/react-motion/">react-motion</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/react-js/">react.js</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/blog/tags/Apache/" style="font-size: 10px;">Apache</a> <a href="/blog/tags/AsyncTask/" style="font-size: 10px;">AsyncTask</a> <a href="/blog/tags/MAMP/" style="font-size: 10px;">MAMP</a> <a href="/blog/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/blog/tags/Mac-OSX/" style="font-size: 10px;">Mac OSX</a> <a href="/blog/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/blog/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/blog/tags/WordPress/" style="font-size: 10px;">WordPress</a> <a href="/blog/tags/XAMPP/" style="font-size: 10px;">XAMPP</a> <a href="/blog/tags/android/" style="font-size: 10px;">android</a> <a href="/blog/tags/java/" style="font-size: 10px;">java</a> <a href="/blog/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/blog/tags/notes/" style="font-size: 10px;">notes</a> <a href="/blog/tags/react-motion/" style="font-size: 10px;">react-motion</a> <a href="/blog/tags/react-js/" style="font-size: 10px;">react.js</a>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://erwaiyang.github.io">Website</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+    
+    <div id="toTop" class="fa fa-chevron-up"></div>
+</aside>
+            
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            &copy; 2016 erwaiyang<br>
+            Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'erwaisblog';
+    
+    
+    var disqus_url = 'http://erwaiyang.github.io/blog/blog/2016/01/26/Mac-OSX-DIY-and-Say-Goodbye-to-XAMPP/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+    
+        <script src="/blog/vendor/fancybox/jquery.fancybox.pack.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/blog/js/main.js"></script>
+
+    </div>
+</body>
+</html>
